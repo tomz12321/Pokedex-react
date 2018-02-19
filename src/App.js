@@ -27,7 +27,7 @@ class App extends Component {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
       .then((res) => {
         if (!res.ok) {
-          throw res.status;
+          throw TypeError(res.status);
         }
         return res.json();
       })
@@ -35,7 +35,10 @@ class App extends Component {
         this.setState({name: body.name});
     })
     .catch((err) => {
-      this.setState({err})
+      this.setState({
+        err: err.message,
+      })
+      
     });
   }
 
