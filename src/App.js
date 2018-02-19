@@ -32,12 +32,16 @@ class App extends Component {
         return res.json();
       })
       .then((body) => {
-        this.setState({name: body.name});
-    })
-    .catch((err) => {
-      this.setState({
-        err: err.message,
+        this.setState({
+          name: body.name,
+          err: "",
+        });
       })
+      .catch((err) => {
+        this.setState({
+          err: err.message,
+          name: "",
+        });
     });
   }
 
