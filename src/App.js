@@ -38,7 +38,6 @@ class App extends Component {
       this.setState({
         err: err.message,
       })
-      
     });
   }
 
