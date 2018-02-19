@@ -35,7 +35,8 @@ class App extends Component {
         this.setState({name: body.name});
     })
     .catch((err) => {
-      this.setState({err})
+      console.log({err});
+      this.setState({err});
     });
   }
 
@@ -54,7 +55,7 @@ class App extends Component {
           <input type="submit" id="submit" value="Search"/>
         </form>
           <p>Name: {this.state.name}</p>
-          <p>{this.state.err}</p>
+          <p>{typeof this.state.err}</p>
       
       </div>
     );
