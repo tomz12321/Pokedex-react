@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 const searchPokemonById = (id, successHandler, errorHandler) => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
@@ -17,7 +18,6 @@ class Search extends Component{
         super();
         this.state = {
             text: "",
-            name: "",
             err: "",
         };
     
@@ -35,12 +35,19 @@ class Search extends Component{
         event.preventDefault();
         //console.log(this.state.text);
         const id = this.state.text;
-        const successHandler = ({name}) => this.setState({name, err: ''});
-        const errorHandler = ({message}) => this.setState({name: '', err: message });
+        const { setPokemonHandler } = this.props;
+        const successHandler = (Pokemon) => {
+                this.setState({err: ''});
+                setPokemonHandler(Pokemon);
+            }
+        
+                
+        const errorHandler = ({message}) => this.setState({err: message });
         searchPokemonById(id, successHandler, errorHandler);
     }
 
     render(){
+        const { pokemonName } = this.props;
         return (
         <div>
             <form onSubmit={this.searchPokemon}>
@@ -48,11 +55,16 @@ class Search extends Component{
                 <input type="text" name="pokemonName" onChange={this.pokemonNameOnChange} required/>
                 <input type="submit" id="submit" value="Search"/>
             </form>
-            <p>Name: {this.state.name}</p>
+            <p>Name: {pokemonName}</p>
             <p>{this.state.err}</p>
         </div>
         )
     }
 }
+
+Search.propTypes = {
+    pokemonName: PropTypes.string.isRequired,
+    setPokemonHandler: PropTypes.func.isRequired,
+};
 
 export default Search;

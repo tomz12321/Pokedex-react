@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 import Header from './Header';
-import Search from './Search';
+import Search from './search';
 import './App.css';
 
 const EmptyComponent = () => (<div></div>);
