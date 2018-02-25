@@ -1,17 +1,30 @@
 import React, {Component} from 'react';
 
+const searchPokemonById = (id, successHandler, errorHandler) => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        .then((res) => {
+            if (!res.ok) {
+              throw TypeError(res.status);
+            }
+            return res.json();
+        })
+        .then(successHandler)
+        .catch(errorHandler);
+}
+
 class Search extends Component{
     constructor(){
         super();
         this.state = {
             text: "",
             name: "",
+            err: "",
         };
     
         this.pokemonNameOnChange = this.pokemonNameOnChange.bind(this);
         this.searchPokemon = this.searchPokemon.bind(this);
     }
-    
+
     pokemonNameOnChange(event) {
         //console.log(event.target)
         this.setState({text: event.target.value});
@@ -22,25 +35,9 @@ class Search extends Component{
         event.preventDefault();
         //console.log(this.state.text);
         const id = this.state.text;
-        fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        .then((res) => {
-            if (!res.ok) {
-              throw TypeError(res.status);
-            }
-            return res.json();
-        })
-        .then((body) => {
-            this.setState({
-              name: body.name,
-              err: "",
-            });
-        })
-        .catch((err) => {
-            this.setState({
-              err: err.message,
-              name: "",
-            });
-        });
+        const successHandler = ({name}) => this.setState({name, err: ''});
+        const errorHandler = ({message}) => this.setState({name: '', err: message });
+        searchPokemonById(id, successHandler, errorHandler);
     }
 
     render(){
