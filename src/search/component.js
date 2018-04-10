@@ -46,7 +46,7 @@ class Search extends Component{
         searchPokemonById(id, successHandler, errorHandler);
     }
 
-    <!-- /* Next stage: Name or National Pokedex number */ --> 
+    /* Next stage: Name or National Pokedex number */
     render(){
         const { pokemonName } = this.props;
         return (
