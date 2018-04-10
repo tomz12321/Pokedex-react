@@ -46,12 +46,14 @@ class Search extends Component{
         searchPokemonById(id, successHandler, errorHandler);
     }
 
+    <!-- /* Next stage: Name or National Pokedex number */ --> 
     render(){
         const { pokemonName } = this.props;
         return (
         <div>
             <form onSubmit={this.searchPokemon}>
-                Enter Pokemon Name or National Pokedex number:
+                Enter Pokemon number:
+                
                 <input type="text" name="pokemonName" onChange={this.pokemonNameOnChange} required/>
                 <input type="submit" id="submit" value="Search"/>
             </form>
