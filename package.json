@@ -1,8 +1,9 @@
 {
-  "homepage": "http://tomz12321.github.io/react-pokedex",
-  "name": "test",
-  "version": "0.1.0",
-  "private": true,
+  "name": "icubarcode-app",
+  "version": "1.6.0",
+  "description": "Material Dashboard React. Coded by Creative Tim",
+  "private": false,
+  "main": "dist/index.js",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
@@ -49,55 +50,40 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "lint:check": "eslint . --ext=js,jsx;  exit 0",
+    "lint:fix": "eslint . --ext=js,jsx --fix;  exit 0",
+    "build-package-css": "cp src/assets/css/material-dashboard-react.css dist/material-dashboard-react.css",
+    "build-package": "npm run build-package-css && babel src --out-dir dist"
   },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
-    ],
-    "testEnvironment": "node",
-    "testURL": "http://localhost",
-    "transform": {
-      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    },
-    "moduleFileExtensions": [
-      "web.js",
-      "mjs",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/creativetimofficial/material-dashboard-react.git"
   },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
+  "keywords": [],
+  "author": "Creative Tim <hello@creative-tim.com> (https://www.creative-tim.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/creativetimofficial/material-dashboard-react/issues"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "homepage": "https://creativetimofficial.github.io/material-dashboard-react/#/dashboard",
+  "optionalDependencies": {
+    "@types/googlemaps": "3.30.16",
+    "@types/markerclustererplus": "2.1.33",
+    "ajv": "6.9.1"
   },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
   "devDependencies": {
-    "gh-pages": "^1.1.0"
+    "eslint-config-prettier": "4.0.0",
+    "eslint-plugin-prettier": "3.0.1"
   }
 }
